@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>圣诞快乐</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #050505; /* 对应 Python 脚本中的经典绿色背景 */
+            color: #FFD700;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #FFD700;
+            z-index: 10;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #fff;
+            opacity: 0.8;
+        }
+
+        /* 简单的飘雪效果 */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: #fff;
+            font-size: 1em;
+            font-family: Arial;
+            text-shadow: 0 0 1px #000;
+            animation: fall linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🎄 Merry Christmas! 🎄</h1>
+        <!-- 这里引用 Python 脚本生成的 GIF -->
+        <img src="christmas_tree.gif" alt="圣诞树" onerror="this.style.display='none'; document.getElementById('error-msg').style.display='block';">
+        
+        <div id="error-msg" style="display: none; color: #ff6b6b; margin-top: 20px;">
+            <p>还没有找到圣诞树图片...</p>
+            <p>请先运行 <code>tree.py</code> 生成 <strong>christmas_tree.gif</strong> 哦！</p>
+        </div>
+
+        <div class="message">
+            <p>愿你的圣诞充满温馨与快乐，永远做一个快乐的小女孩！
+                虽然我不是你的白马王子，但是希望你永远都很快乐，没有烦恼嘻嘻~
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // 创建飘雪效果
+        function createSnow() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.innerHTML = '❄';
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+            snowflake.style.opacity = Math.random();
+            snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+            
+            document.body.appendChild(snowflake);
+
+            setTimeout(() => {
+                snowflake.remove();
+            }, 5000);
+        }
+
+        setInterval(createSnow, 100);
+    </script>
+</body>
+</html>
